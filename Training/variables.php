@@ -13,5 +13,5 @@ $arr2 = array();
 // Check variable type
 var_dump($age);
 
-const constVariable = "Const";
-define('CONSTVARIABLE', 10);
+const CONST_VARIABLE = "CONST";
+define('CONST', 10);
