@@ -70,3 +70,17 @@ $users[] = 'Zbigniew Nowak';
 $users[] = 'Jadwiga Kaczmarska';
 
 print_r($users);
+
+/*
+    Tablice asocjacyjne
+*/
+
+$user = [
+  'firstName' => 'Jan',
+  'lastName' => 'Kowalski',
+  'age' => 22,
+  1 => 'klucz numeryczny',
+];
+print_r($user);
+$lastName = $user['lastName'];
+var_dump($lastName);
