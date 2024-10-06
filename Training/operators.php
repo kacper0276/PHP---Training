@@ -136,3 +136,19 @@ var_dump(32 < 2);
 var_dump(2 < 85);
 var_dump(43 <= '300');
 var_dump(93 <= '93');
+
+/*
+ <=> - space ship
+ Ciekawym operatorem jest "space ship", tłumaczenie nazwy tego operatora będzie cokolwiek śmieszne.
+ Genezą stojacą za nazwą jest wyglad samego operatora, który przywodzi na mysł Tie Fightera z Gwiezdnych Wojen.
+ Operator ten jak każdy operator porónania porównuje dwie wartości i w zależności od nich może zwrócić:
+  - 0 - gdy obie wartości są równe
+  - -1 - gdy lewa wartość jest mniejsza od prawej
+  - 1 - gdy prawa wartośc jest większa od lewej
+ Głównym zastosowanie tego operatora są funkcje sortujące o których zapewne wspomnimy w dalszej części kursu
+*/
+
+// var_dump(92 <=> 92);
+// var_dump(10 <=> 92);
+// var_dump(92 <=> 2);
+// var_dump('foo' <=> 'bar');
