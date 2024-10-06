@@ -81,14 +81,6 @@ echo $count;
 
 /*
  Operator konkatenacji (lączenie stringów)
- 
- Czasami zdarza się, że z dwóch stringów (ciągów znaków) chcemy utworzyć jeden.
- Do tego celu używamy operatora konkatenacji czyli "."
- Być może nazwa brzmi "strasznie" jednak w praktyce to bardzo prosta operacja.
- 
- Należy zauważyć, że łączenie stringów następuję bezpośrednio, czyli do końca stringu znajdującego się po lewej
- stronie operatora doklejany jest string znajdujący się po jego prawej stronie. Tak więc jeśli chcemy
- dodać odstęp (spację) to musimy jeszcze takową dodać samodzielnie, tak jak w poniższym przykładnie
 */
 
 $firstName = "Jan";
@@ -103,3 +95,17 @@ var_dump($fullName);
 $php = 'PHP';
 $php .= '7.4';
 var_dump($php);
+
+// Operatory pre/post inkrementacji i dekrementacji
+
+// Postinkrementacja
+
+$age = 11;
+echo $age++;
+echo $age;
+
+// preinkrementacja
+
+$age = 11;
+echo ++$age;
+echo $age;
