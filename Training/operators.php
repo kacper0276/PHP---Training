@@ -109,3 +109,30 @@ echo $age;
 $age = 11;
 echo ++$age;
 echo $age;
+
+// Operatory porównania
+
+var_dump('foo' == 'bar');
+var_dump(9 == '9');
+var_dump(9 === '9');
+var_dump(3 === 1);
+
+// !=
+//  !==
+
+/*
+ Kolejne operatory sprawdzają następujące rzecy:
+  > - większe
+  >= - większe lub równe
+  < - mniejsze
+  <= - mniejsze lub równe
+*/
+
+var_dump(32 > 2); // true
+var_dump(2 > 85); // false
+var_dump(43 >= '300');
+var_dump(93 >= '93');
+var_dump(32 < 2);
+var_dump(2 < 85);
+var_dump(43 <= '300');
+var_dump(93 <= '93');
