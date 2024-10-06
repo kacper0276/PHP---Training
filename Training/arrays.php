@@ -84,3 +84,21 @@ $user = [
 print_r($user);
 $lastName = $user['lastName'];
 var_dump($lastName);
+
+/*
+    Tablice dwuwymiarowe
+*/
+$employees = [
+    [
+        'firstName' => 'Jan',
+        'lastName' => 'Kowalski',
+        'age' => 22
+    ],
+    [
+        'firstName' => 'Karol',
+        'lastName' => 'Nowak',
+        'age' => 31
+    ]
+];
+
+print_r($employees);
