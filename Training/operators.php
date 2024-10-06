@@ -56,3 +56,50 @@ echo 2**4;
  */
 // echo 2 + 2 * 2;
 // echo (2 + 2) * 2;
+
+/*
+ Jeśli chcemy zwiększyć wartość istniejącej zmiennej to zamiast używać standardowego zapisu
+ możemy się posłużyć skróconym zapisem.
+ Należy go czytać w następujący sposób:
+ weź wartość która znajduje się w zmiennej po lewej stronie operatora (+=)
+ a następnie do tej wartości dodaj wartość znajdującą się po lewej stronie operatora
+ na sam koniec wynik działania przypisz do zmiennej znajdującej sie po prawej stronie operatora
+*/
+
+$count = 10;
+$count += 5;
+echo $count;
+
+/*
+ Analogicznie działają operatory:
+ -=
+ *=
+ /=
+ %=
+ **=
+*/
+
+/*
+ Operator konkatenacji (lączenie stringów)
+ 
+ Czasami zdarza się, że z dwóch stringów (ciągów znaków) chcemy utworzyć jeden.
+ Do tego celu używamy operatora konkatenacji czyli "."
+ Być może nazwa brzmi "strasznie" jednak w praktyce to bardzo prosta operacja.
+ 
+ Należy zauważyć, że łączenie stringów następuję bezpośrednio, czyli do końca stringu znajdującego się po lewej
+ stronie operatora doklejany jest string znajdujący się po jego prawej stronie. Tak więc jeśli chcemy
+ dodać odstęp (spację) to musimy jeszcze takową dodać samodzielnie, tak jak w poniższym przykładnie
+*/
+
+$firstName = "Jan";
+$lastName = "Kowalski";
+$fullName = $firstName . " " . $lastName;
+var_dump($fullName);
+
+/*
+ Możemy również w ramach potrzeb użyć konkatenacji od razu połączonej z przypisaniem.
+ */
+
+$php = 'PHP';
+$php .= '7.4';
+var_dump($php);
