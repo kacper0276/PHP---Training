@@ -29,3 +29,16 @@ Zmiana wartości
 
 // $users = ['Jan Kowalski', 'Zbigniew Nowak', 'Jadwiga Kaczmarska'];
 // $users[] = 'Adrian Onyszko';
+
+/* 
+   Usuwanie elementu tablicy
+ */
+
+// print_r($users);
+// unset($users[1]);
+// $users[1] = null;
+// var_dump($users);
+
+/* 
+   W przypadku usuwania już musimy podać konkretnie jaką daną chcemy usunąć to znaczy podać konkretny indeks.
+ */
