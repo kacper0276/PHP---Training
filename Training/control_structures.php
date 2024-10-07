@@ -46,3 +46,33 @@ if ($age >= 17) { // wyrażenie1
 //     // kod się wykona jeśli żadne z powyższych wyrażeń nie zostanie spełnione
     echo 'Jesteś za młody, nie możesz kupić biletu na ten film';
 }
+
+$grade = 4;
+$mood = $grade > 4 ? 'happy' : 'unhappy';
+echo $mood;
+
+// Operatory logiczne
+/*
+    Podstawowe operatory logicznie to:
+    && - AND - prawda wtedy gdy OBA wyrażenie są prawdziwe (wyrażenie po lewej i prawej stronie musi być prawdziwe)
+    || - OR - prawda gdy JEDNO wyrażenie jest prawdziwe (po lewej lub prawej stronie, lub oba prawdziwe)
+    xor - prawda gdy TYLKO JEDNO wyrażenie jest prawdziwe (po lewej lub prawej stronie)
+    ! - negacja - sprawdza czy wyrażenie nie jest prawdziwe
+*/
+
+$a = 1 && 2;
+var_dump($a);
+
+var_dump(1 && 0); // false
+var_dump(1 && true); // true
+
+var_dump(0 || 1); // true
+var_dump(true || false); // true
+var_dump(0 || ''); // false
+
+var_dump(!false); // true
+var_dump(!0); // true
+var_dump(!1); // false
+
+var_dump(2 xor 3); // false
+var_dump(false xor true); // true
