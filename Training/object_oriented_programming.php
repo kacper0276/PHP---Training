@@ -323,3 +323,25 @@ class XmlRenderer extends Renderer
 
 $html = new HtmlRenderer('Tekst do wyświetlenia');
 echo $html->render();
+
+// Interfejsy
+ 
+interface ExampleInterface
+{
+    public const SOMETHING = 'bar';
+    public function doSomething1(int $arg): string;
+    public function doSomething2(string $arg1, string $arg2): void;
+}
+ 
+class Example implements ExampleInterface
+{
+    public function doSomething1(int $arg): string
+    {
+        return 'bar';
+    }
+
+    public function doSomething2(string $arg1, string $arg2): void
+    {
+        // ...
+    }
+}
