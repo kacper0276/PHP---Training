@@ -181,3 +181,145 @@ SomeClass2::$foo = 'foo foo';
 var_dump(SomeClass2::$foo);
 SomeClass2::doSomething();
 // SomeClass2::$baz; // ERROR
+
+// Dziedziczenie
+class User 
+{
+    public string $login = 'userLogin';
+    private string $topSecret = 'secret';
+
+    public function __construct() 
+    {
+        // ....
+    }
+}
+
+
+class Client extends User
+{
+    public int $number = 111;
+
+    public function __construct()
+    {   
+        var_dump($this->login);
+        var_dump($this->number);
+        //var_dump($this->topSecret);
+    }
+}
+
+class Admin extends User
+{
+    public string $role = 'superuser';
+
+    public function __construct()
+    {   
+        var_dump($this->login);
+        var_dump($this->role);
+        // var_dump($this->topSecret);
+    }
+}
+
+
+$user = new User();
+$client = new Client();
+$admin = new Admin();
+
+class Rodzic
+{
+    protected ?string $nazwa = null;
+
+    public function __construct(string $nazwa)
+    {
+        var_dump("TO JEST KONSTRUKTOR RODZICA\n");
+        $this->nazwa = $nazwa;
+    }
+
+    public function pobierzNazwe(): ?string
+    {
+        return $this->nazwa;
+    }
+}
+
+$obiektRodzica = new Rodzic('testowa nazwa rodzica');
+var_dump($obiektRodzica->pobierzNazwe());
+
+class Dziecko extends Rodzic
+{
+    public function __construct(string $nazwa, int $numer)
+    {
+        var_dump("TO JEST KONSTRUKTOR DZIECKA\n");
+        parent::__construct($nazwa);
+    }
+}
+
+$obiektDziecko = new Dziecko('testowa nazwa dziecka', 111);
+var_dump($obiektDziecko->pobierzNazwe());
+
+// Klasy abstrakcyjne
+abstract class SomeClass12 
+{
+    protected string $property;
+
+    abstract public function doSomething(string $param1, array $param2): object;
+
+    public function property(): string
+    {
+        return $this->property;
+    }
+}
+
+class Test extends SomeClass
+{
+    public function doSomething(string $param1, array $param2): object
+    {
+        return new object();
+    }
+}
+
+abstract class Renderer
+{
+    protected string $text;
+
+    public function __construct(string $text)
+    {
+        $this->text = $text;
+    }
+
+    abstract public function render(): string;
+
+    public function text(): string
+    {
+        return $this->text;
+    }
+}
+
+
+class HtmlRenderer extends Renderer
+{
+    public function render(): string
+    {
+        return '<html><head></head><body><h2> ==>'
+         . $this->text 
+         . '<== </h2></body></html>';
+    }
+}
+
+class JsonRenderer extends Renderer
+{
+    public function render(): string
+    {
+        return json_encode($this->text);
+    }
+}
+
+
+class XmlRenderer extends Renderer
+{
+    public function render(): string
+    {
+        return "<xml><teks>{$this->text}</tekst></xml>";
+    }
+}
+
+$html = new HtmlRenderer('Tekst do wyświetlenia');
+echo $html->render();
