@@ -345,3 +345,36 @@ class Example implements ExampleInterface
         // ...
     }
 }
+
+// FINAL
+
+/*
+Język PHP daje możliwość zabronienie dziedziczenia.
+Uzyskuje się to przez użycie słowa "final" przed "class"
+ 
+Klasa która jest oznaczona jako finalna nie może być dziedziczona.
+*/
+
+final class Vehicle {}
+class Car extends Vehicle {}
+
+class Vehicle1
+{
+    final public function doSomething(): void
+    {
+        echo 'foo';
+    }
+
+    public function doSomething2(): void
+    {
+
+    }
+}
+
+class Car1 extends Vehicle1
+{
+    public function doSomething2(): void
+    {
+        echo 'bar';
+    }
+}
