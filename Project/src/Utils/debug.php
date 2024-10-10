@@ -1,6 +1,11 @@
 <?php
 
-function dumb($data) 
+declare(strict_types=1);
+
+error_reporting(E_ALL); // Pokazuje wszystkie błędy, nawet te najmniejsze
+ini_set('display_errors', '1');
+
+function dump($data) 
 {
     echo '<div 
     style="
