@@ -9,11 +9,10 @@ namespace App;
 
 // require ('src/Utils/debug.php'); // Przerywa działanie skryptu w miejscu kiedy nie może wczytać pliku (Fatal error)
 require_once ('src/Utils/debug.php');
+require_once('src/View.php');
 
 $action = $_GET['action'] ?? null;
 
-if ($action === 'create') {
-    include_once('templates/pages/create.php');
-} else {
-    include_once('templates/pages/list.php');
-}
+$view = new View();
+$view->render($action);
+
