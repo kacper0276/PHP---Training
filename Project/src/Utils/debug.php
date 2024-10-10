@@ -5,9 +5,8 @@ declare(strict_types=1);
 error_reporting(E_ALL); // Pokazuje wszystkie błędy, nawet te najmniejsze
 ini_set('display_errors', '1');
 
-function dump($data) 
-{
-    echo '<div 
+function dump($data) {
+    echo '<br/><div 
     style="
         background: lightgray;
         display: inline-block;
@@ -19,5 +18,5 @@ function dump($data)
         print_r($data);
     echo '</pre>
     </div>
-    </br>';
+    <br/>';
 }
