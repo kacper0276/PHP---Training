@@ -10,12 +10,7 @@ namespace App;
 // require ('src/Utils/debug.php'); // Przerywa działanie skryptu w miejscu kiedy nie może wczytać pliku (Fatal error)
 require_once ('src/Utils/debug.php');
 
-// Zmienna super globalna
-if (!empty($_GET['action'])) {
-    $action = $_GET['action'];
-} else {
-    $action = null;
-}
+$action = $_GET['action'] ?? null;
 
 ?>
 
@@ -43,8 +38,10 @@ if (!empty($_GET['action'])) {
             <div>
                 <?php if($action === 'create') : ?>
                     Nowa notatka
+                    <?php echo htmlentities($action) ?>
                 <?php else : ?>
-                    Lista notatek   
+                    Lista notatek
+                    <?php echo htmlentities($action ?? '') ?>
                 <?php endif; ?>
                 ?>
             </div>
