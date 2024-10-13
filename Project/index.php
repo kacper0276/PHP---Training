@@ -19,10 +19,12 @@ $view = new View();
 
 $viewParams = [];
 if ($action === 'create') {
+    $page = 'create';
     $viewParams['resultCreate'] = 'Udało się';
 } else {
+    $page = 'list';
     $viewParams['resultList'] = 'Wyświetlamy notatki';
 }
 
-$view->render($action, $viewParams);
+$view->render($page, $viewParams);
 
