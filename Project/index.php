@@ -9,42 +9,15 @@ namespace App;
 
 // require ('src/Utils/debug.php'); // Przerywa działanie skryptu w miejscu kiedy nie może wczytać pliku (Fatal error)
 require_once ('src/Utils/debug.php');
-require_once('src/View.php');
+require_once ('src/Controller.php');
 
-const DEFAULT_ACTION = 'list';
+$request = [
+  'get' => $_GET,
+  'post' => $_POST
+];
 
-$action = $_GET['action'] ?? DEFAULT_ACTION;
+//$controller = new Controller($request);
+//$controller->run();
 
-$view = new View();
-
-$viewParams = [];
-
-switch ($action) {
-    case 'create':
-        $page = 'create';
-        $created = false;
-
-        if (!empty($_POST)) {
-            $created = true;
-            $viewParams = [
-                'title' => $_POST['title'],
-                'description' => $_POST['description'],
-            ];
-        }
-
-        $viewParams['created'] = $created;
-        break;
-    case 'show':
-        $viewParams = [
-            'title' => 'TEST',
-            'description' => 'Opis',
-        ];
-        break;
-    default:
-        $page = 'list';
-        $viewParams['resultList'] = 'Wyświetlamy notatki';
-        break;
-}
-
-$view->render($page, $viewParams);
+(new Controller($request))->run();
 
