@@ -20,5 +20,6 @@ $request = [
 //$controller = new Controller($request);
 //$controller->run();
 
+Controller::initConfiguration($configuration);
 (new Controller($request))->run();
 
