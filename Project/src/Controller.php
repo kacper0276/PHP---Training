@@ -13,14 +13,12 @@ class Controller
   private array $request;
   private View $view;
 
-  public function __construct(array $request)
-  {
+  public function __construct(array $request) {
     $this->request = $request;
     $this->view = new View();
   }
 
-  public function run(): void
-  {
+  public function run(): void {
     $viewParams = [];
 
     switch ($this->action()) {
@@ -54,19 +52,16 @@ class Controller
     $this->view->render($page, $viewParams);
   }
 
-  private function action(): string
-  {
+  private function action(): string {
     $data = $this->getRequestGet();
     return $data['action'] ?? self::DEFAULT_ACTION;
   }
 
-  private function getRequestGet(): array
-  {
+  private function getRequestGet(): array {
     return $this->request['get'] ?? [];
   }
 
-  private function getRequestPost(): array
-  {
+  private function getRequestPost(): array {
     return $this->request['post'] ?? [];
   }
 }
