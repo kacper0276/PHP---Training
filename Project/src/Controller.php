@@ -4,15 +4,20 @@ declare(strict_types=1);
 
 namespace App;
 
-require_once("View.php");
-require_once("Database.php");
+require_once("src/Exception/ConfigurationException.php");
 
-class Controller
-{
+use App\Exception\ConfigurationException;
+use App\Exception\NotFoundException;
+
+require_once("Database.php");
+require_once("View.php");
+
+class Controller {
   private const DEFAULT_ACTION = 'list';
 
   private static array $configuration = [];
 
+  private Database $database;
   private array $request;
   private View $view;
 
@@ -21,44 +26,67 @@ class Controller
   }
 
   public function __construct(array $request) {
-    $db = new Database(self::$configuration['db']);
+    if (empty(self::$configuration['db'])) {
+      throw new ConfigurationException('Configuration error');
+    }
+    $this->database = new Database(self::$configuration['db']);
 
     $this->request = $request;
     $this->view = new View();
   }
 
   public function run(): void {
-    $viewParams = [];
-
     switch ($this->action()) {
       case 'create':
         $page = 'create';
-        $created = false;
 
         $data = $this->getRequestPost();
         if (!empty($data)) {
-          $created = true;
-          $viewParams = [
+          $noteData = [
             'title' => $data['title'],
             'description' => $data['description']
           ];
+          $this->database->createNote($noteData);
+          header('Location: /?before=created');
+          exit;
         }
 
-        $viewParams['created'] = $created;
         break;
       case 'show':
+        $page = 'show';
+
+        $data = $this->getRequestGet();
+        $noteId = (int) ($data['id'] ?? null);
+
+        if (!$noteId) {
+          header('Location: /?error=missingNoteId');
+          exit;
+        }
+
+        try {
+          $note = $this->database->getNote($noteId);
+        } catch (NotFoundException $e) {
+          header('Location: /?error=noteNotFound');
+          exit;
+        }
+
         $viewParams = [
-          'title' => 'Moja notatka',
-          'description' => 'Opis'
+          'note' => $note
         ];
         break;
       default:
         $page = 'list';
-        $viewParams['resultList'] = "wyświetlamy notatki";
+        $data = $this->getRequestGet();
+
+        $viewParams = [
+          'notes' => $this->database->getNotes(),
+          'before' => $data['before'] ?? null,
+          'error' => $data['error'] ?? null
+        ];
         break;
     }
 
-    $this->view->render($page, $viewParams);
+    $this->view->render($page, $viewParams ?? []);
   }
 
   private function action(): string {
