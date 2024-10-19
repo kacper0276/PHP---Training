@@ -104,6 +104,7 @@ form input[type="button"] {
   font-size: 18px;
   text-transform: uppercase;
   padding: 12 40px;
+  cursor: pointer;
 }
 
 form input[type="submit"]:hover,
@@ -333,6 +334,11 @@ form.note-form textarea {
 .delete ul,
 .show ul {
   list-style: none;
+}
+
+.delete ul li,
+.show ul li {
+  margin-top: 10px;
 }
 
 .delete button,
