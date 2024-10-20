@@ -4,26 +4,26 @@ declare(strict_types=1);
 
 namespace App;
 
+require_once("src/Utils/debug.php");
+require_once("src/NoteController.php");
+require_once("src/Request.php");
+require_once("src/Exception/AppException.php");
+
+use App\Request;
 use App\Exception\AppException;
 use App\Exception\ConfigurationException;
 use Throwable;
 
-// include ('src/Utils/debug.php'); // On też pokazuje błąd ale nie przerywa działania skryptu (Warning)
-// include_once ('src/Utils/debug.php');
+$configuration = require_once("config/config.php");
 
-// require ('src/Utils/debug.php'); // Przerywa działanie skryptu w miejscu kiedy nie może wczytać pliku (Fatal error)
-require_once ('src/Utils/debug.php');
-require_once ('src/Controller.php');
-$configuration = require_once('config/config.php');
-
-$request = [
-  'get' => $_GET,
-  'post' => $_POST
-];
+$request = new Request($_GET, $_POST);
 
 try {
-  Controller::initConfiguration($configuration);
-  (new Controller($request))->run();
+  //$controller = new Controller($request);
+  //$controller->run();
+
+  AbstractController::initConfiguration($configuration);
+  (new NoteController($request))->run();
 } catch (ConfigurationException $e) {
   echo '<h1>Wystąpił błąd w aplikacji</h1>';
   echo 'Problem z applikacją, proszę spróbować za chwilę.';
@@ -34,5 +34,3 @@ try {
   echo '<h1>Wystąpił błąd w aplikacji</h1>';
   dump($e);
 }
-
-
