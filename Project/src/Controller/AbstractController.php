@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-require_once("Exception/ConfigurationException.php");
-require_once("Database.php");
-require_once("View.php");
-
 use App\Database;
 use App\Request;
 use App\View;
@@ -36,7 +32,8 @@ abstract class AbstractController {
     $this->view = new View();
   }
 
-  public function run(): void {
+  final public function run(): void
+  {
     $action = $this->action() . 'Action';
     if (!method_exists($this, $action)) {
       $action = self::DEFAULT_ACTION . 'Action';
@@ -45,7 +42,25 @@ abstract class AbstractController {
     $this->$action();
   }
 
-  private function action(): string {
+  final protected function redirect(string $to, array $params): void
+  {
+    $location = $to;
+
+    if (count($params)) {
+      $queryParams = [];
+      foreach ($params as $key => $value) {
+        $queryParams[] = urlencode($key) . '=' . urlencode($value);
+      }
+      $queryParams = implode('&', $queryParams);
+      $location .= '?' . $queryParams;
+    }
+
+    header("Location: $location");
+    exit;
+  }
+
+  final private function action(): string
+  {
     return $this->request->getParam('action', self::DEFAULT_ACTION);
   }
 }
