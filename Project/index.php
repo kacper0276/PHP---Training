@@ -20,9 +20,6 @@ use App\Exception\ConfigurationException;
 $request = new Request($_GET, $_POST, $_SERVER);
 
 try {
-  //$controller = new Controller($request);
-  //$controller->run();
-
   AbstractController::initConfiguration($configuration);
   (new NoteController($request))->run();
 } catch (ConfigurationException $e) {
