@@ -1,1 +1,1 @@
-Repository created for learning PHP
+Repository created for training PHP, before Laravel
